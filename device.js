@@ -31,15 +31,15 @@ function resize() {
 
 function drawCanvas(canvas) {
     var w = window.innerWidth-20;
-    if (w > 700) {
-        w = 700;
+    if (w > 500) {
+        w = 500;
     }
     canvas.width = w;
     var h = 1.35*w;
     canvas.height = h;
 
     var ctx = canvas.getContext('2d');
-    window.glob.halfLine = Math.max(1, Math.floor(w/300));
+    window.glob.halfLine = Math.max(1, Math.floor(w/200));
     window.glob.height = canvas.height;
     window.glob.width = canvas.width;
     window.glob.arcStart = Math.floor(canvas.height/3);
