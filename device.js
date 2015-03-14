@@ -9,6 +9,7 @@ var glob = {
 
 function draw() {
     var canvas = document.getElementById('canvas1');
+    window.glob.bottomStyle = "rgb(0, 0, 0)";
     drawCanvas(canvas);
 
     canvas = document.getElementById('canvas2');
@@ -17,6 +18,11 @@ function draw() {
 };
 
 function drawCanvas(canvas) {
+    var w = window.innerWidth-20;
+    canvas.width = w;
+    var h = 1.35*w;
+    canvas.height = h;
+
     var ctx = canvas.getContext('2d');
     window.glob.height = canvas.height;
     window.glob.width = canvas.width;
@@ -35,7 +41,7 @@ function drawBorder(ctx) {
     ctx.clearRect(0, glob.arcStart, glob.width, glob.height - glob.arcStart);
 
     ctx.beginPath();
-    ctx.arc(1, glob.arcStart, glob.width-2*glob.halfLine, 0, Math.PI/3);
+    ctx.arc(glob.halfLine, glob.arcStart, glob.width-2*glob.halfLine, 0, Math.PI/3);
     ctx.arc(glob.width-1*glob.halfLine, glob.arcStart, glob.width-2*glob.halfLine, 2*Math.PI/3, Math.PI);
     ctx.stroke();
 };
@@ -48,10 +54,11 @@ function drawChevron(ctx) {
 
     ctx.beginPath();
     ctx.moveTo(glob.width/2, glob.height/3);
-    ctx.arc(1, glob.arcStart, glob.width-2*glob.halfLine, subtend, Math.PI/3);
+    ctx.arc(glob.halfLine, glob.arcStart, glob.width-2*glob.halfLine, subtend, Math.PI/3);
     ctx.arc(glob.width-1*glob.halfLine, glob.arcStart, glob.width-2*glob.halfLine, 2*Math.PI/3, Math.PI-subtend);
-    ctx.moveTo(glob.width/2, glob.height/4);
+    ctx.lineTo(glob.width/2, glob.height/3);
     ctx.fill();
+    // ctx.stroke();
 };
 
 function trefoil(ctx, x, y, style) {

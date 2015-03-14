@@ -2,9 +2,14 @@
 <html>
 <head>
 <script src="device.js"></script>
+<style>
+    body {
+        margin: 10px;
+    }
+</style>
 </head>
-<body onload="draw();">
-<canvas id="canvas1" width="500" height="700"></canvas>
-<canvas id="canvas2" width="500" height="700"></canvas>
+<body onload="draw()" onresize="draw()">
+<canvas id="canvas1"></canvas>
+<canvas id="canvas2"></canvas>
 </body>
 </html>
