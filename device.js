@@ -17,6 +17,18 @@ function draw() {
     drawCanvas(canvas);
 };
 
+function resize() {
+    if (glob.redrawing) {
+        return;
+    }
+
+    glob.redrawing = true;
+    window.setTimeout(function() {
+        draw();
+        glob.redrawing = false;
+    }, 100);
+};
+
 function drawCanvas(canvas) {
     var w = window.innerWidth-20;
     if (w > 700) {
