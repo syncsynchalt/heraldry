@@ -19,11 +19,15 @@ function draw() {
 
 function drawCanvas(canvas) {
     var w = window.innerWidth-20;
+    if (w > 700) {
+        w = 700;
+    }
     canvas.width = w;
     var h = 1.35*w;
     canvas.height = h;
 
     var ctx = canvas.getContext('2d');
+    window.glob.halfLine = Math.max(1, Math.floor(w/300));
     window.glob.height = canvas.height;
     window.glob.width = canvas.width;
     window.glob.arcStart = Math.floor(canvas.height/3);
@@ -98,10 +102,10 @@ function trefoil(ctx, x, y, style) {
 
     // center
     ctx.beginPath();
-    ctx.ellipse(x-xUnit/2, y-yUnit/2, xRad*2/4, yRad*3/4, 0, 0, Math.PI*3/5);
-    ctx.ellipse(x-xUnit/2, y+yUnit/2, xRad*2/4, yRad*3/4, 0, -Math.PI*3/5, 0);
-    ctx.ellipse(x+xUnit/2, y+yUnit/2, xRad*2/4, yRad*3/4, 0, Math.PI, Math.PI*8/5);
-    ctx.ellipse(x+xUnit/2, y-yUnit/2, xRad*2/4, yRad*3/4, 0, Math.PI*2/5, Math.PI*6/5);
+    ctx.ellipse(x-xUnit/2.6, y-yUnit/4, xRad*2/6.5, yRad*2/7, 0, -Math.PI*2/5,  Math.PI*4/5);
+    ctx.ellipse(x-xUnit/3.0, y+yUnit/3, xRad*2/6.0, yRad*3/6, 0, -Math.PI*4/5,  Math.PI*0/5);
+    ctx.ellipse(x+xUnit/3.0, y+yUnit/3, xRad*2/6.0, yRad*3/6, 0,  Math.PI*5/5,  Math.PI*9/5);
+    ctx.ellipse(x+xUnit/2.6, y-yUnit/4, xRad*2/6.5, yRad*2/7, 0,  Math.PI*1/5,  Math.PI*7/5);
     ctx.fill();
 
     // stem
