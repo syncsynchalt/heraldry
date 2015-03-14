@@ -1,33 +1,26 @@
-// ellipse polyfill from canvas-5-polyfill
-// https://github.com/google/canvas-5-polyfill
-if (CanvasRenderingContext2D.prototype.ellipse == undefined) {
-  CanvasRenderingContext2D.prototype.ellipse = function(
-        x, y, radiusX, radiusY, rotation, startAngle, endAngle, antiClockwise) {
-    this.save();
-    this.translate(x, y);
-    this.rotate(rotation);
-    this.scale(radiusX, radiusY);
-    this.arc(0, 0, 1, startAngle, endAngle, antiClockwise);
-    this.restore();
-  }
-}
-
-var glob = {};
+var glob = {
+    halfLine: 1,
+    border: "rgb(0, 0, 0)",
+    bottomStyle: "rgb(0, 0, 0)",
+    topStyle: "rgb(255, 255, 255)",
+    bottomCharge: "rgb(255, 255, 255)",
+    topCharge: "rgb(0, 0, 0)"
+};
 
 function draw() {
-    var canvas = document.getElementById('thecanvas');
+    var canvas = document.getElementById('canvas1');
+    drawCanvas(canvas);
+
+    canvas = document.getElementById('canvas2');
+    window.glob.bottomStyle = "rgb(0, 0, 128)";
+    drawCanvas(canvas);
+};
+
+function drawCanvas(canvas) {
     var ctx = canvas.getContext('2d');
-    window.glob = {
-        halfLine: 1,
-        border: "rgb(0, 0, 0)",
-        bottomStyle: "rgb(0, 0, 0)",
-        topStyle: "rgb(255, 255, 255)",
-        bottomCharge: "rgb(255, 255, 255)",
-        topCharge: "rgb(0, 0, 0)",
-        height: canvas.height,
-        width: canvas.width,
-        arcStart: Math.floor(canvas.height/3)
-    };
+    window.glob.height = canvas.height;
+    window.glob.width = canvas.width;
+    window.glob.arcStart = Math.floor(canvas.height/3);
 
     drawBorder(ctx);
     drawChevron(ctx);
@@ -130,3 +123,20 @@ function drawTopCharges(ctx) {
 function drawBottomCharge(ctx) {
     trefoil(ctx, glob.width/2, glob.height-glob.height/2.8, glob.bottomCharge);
 };
+
+/*
+ * ellipse polyfill from canvas-5-polyfill
+ * https://github.com/google/canvas-5-polyfill
+ */
+if (CanvasRenderingContext2D.prototype.ellipse == undefined) {
+  CanvasRenderingContext2D.prototype.ellipse = function(
+        x, y, radiusX, radiusY, rotation, startAngle, endAngle, antiClockwise) {
+    this.save();
+    this.translate(x, y);
+    this.rotate(rotation);
+    this.scale(radiusX, radiusY);
+    this.arc(0, 0, 1, startAngle, endAngle, antiClockwise);
+    this.restore();
+  }
+}
+
