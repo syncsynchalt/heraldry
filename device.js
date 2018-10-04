@@ -9,11 +9,6 @@ var glob = {
 
 function draw() {
     var canvas = document.getElementById('canvas1');
-    window.glob.bottomStyle = "rgb(0, 0, 0)";
-    drawCanvas(canvas);
-
-    canvas = document.getElementById('canvas2');
-    window.glob.bottomStyle = "rgb(0, 0, 128)";
     drawCanvas(canvas);
 };
 
